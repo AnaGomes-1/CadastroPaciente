@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
-const Cadastro = ({ Cadastrar }) => {
+
+
+function Cadastro () {
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [telefone, setTelefone] = useState("");
@@ -13,6 +16,7 @@ const Cadastro = ({ Cadastrar }) => {
     const [dtNasc, setDtNasc] = useState("");
     const [senha, setSenha] = useState("");
     const [confiSenha, setConfiSenha] = useState("");
+    const navigate = useNavigate();
 
     const estados = ['SP', 'RJ', 'MG', 'RS', 'SC'];
     const cidadesPorEstado = {
@@ -27,11 +31,22 @@ const Cadastro = ({ Cadastrar }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (senha !== confiSenha) {
-            alert("Senhas diferentes");
-            return;
-        }
-        alert("Cadastro realizado com sucesso!");
+        console.log("Paciente cadastrado: ", nome, cpf, senha, confiSenha);
+    };
+
+    const salvar = () => {
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuario = {
+            nome: nomeUsuario,
+            cpf: cpf,
+            senha: hora,
+            especialidade: especialidade,
+            medico: medico,
+            estado: estado,
+            cidade: cidade
+        };
+        usuarios.push(usuario);
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
     };
 
     return (
@@ -114,7 +129,12 @@ const Cadastro = ({ Cadastrar }) => {
                 <input type="password" value={confiSenha} minLength={3} maxLength={8} onChange={(e) => setConfiSenha(e.target.value)} required />
             </div>
 
-            <button type="submit">Cadastrar</button>       
+            <button>
+                <Link to="/Cadastro">Cadastrar</Link>
+
+            </button>
+
+            {/* <button type="submit" onClick={salvar} >Cadastrar</button>        */}
         </form>
     );
 };

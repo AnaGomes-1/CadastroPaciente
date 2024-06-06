@@ -1,3 +1,11 @@
-div .maincontent{
-    background-image: url('../image/7317078.png'); 
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: solid red;
+
 }
+

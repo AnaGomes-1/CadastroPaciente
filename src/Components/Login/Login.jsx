@@ -1,20 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Formulario = ({onBack}) => {
+function Formulario({onBack}) {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(cpf, password);
-        alert("Enviando os dados: " + cpf + " - " + password);
-    };
+        
+    
     if (cpf === '1111' && password === '1234') {
         alert("Login feito com sucesso!");
+        navigate("/Perfil", { replace: true });
     } else {
         alert("Os dados digitados estão incorretos");
     }
-
+};
 
     return (
         <form onSubmit={handleSubmit}>
@@ -39,7 +42,7 @@ const Formulario = ({onBack}) => {
             <button type='submit'>Entrar</button>
             <div className="cadastre">
                 <p>Não tem uma conta?</p>
-                <button type="button" onClick={() => alert("Redirecione para a página de cadastro")}>Cadastre-se</button>
+                <button type="button" onClick={() => navigate("/Cadastro")}>Cadastre-se</button>
             </div>
             <button type="button" onClick={onBack}>Voltar</button>
         </form>
