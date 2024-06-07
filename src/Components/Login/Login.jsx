@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../Login/style-login.css'
+import { Link } from "react-router-dom";
 
-function Formulario({onBack}) {
+function Login({onBack}) {
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ function Formulario({onBack}) {
 
     return (
         <form onSubmit={handleSubmit}>
+           
             <div>
                 <label>CPF: </label>
                 <input type="text" minLength={3} maxLength={11} value={cpf} 
@@ -43,10 +46,12 @@ function Formulario({onBack}) {
             <div className="cadastre">
                 <p>Não tem uma conta?</p>
                 <button type="button" onClick={() => navigate("/Cadastro")}>Cadastre-se</button>
+                <button type="button" ><Link to="/">Voltar</Link></button>
             </div>
-            <button type="button" onClick={onBack}>Voltar</button>
+            
+
         </form>
     );
 };
 
-export default Formulario;
+export default Login;

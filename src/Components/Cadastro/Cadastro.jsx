@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-
-
-function Cadastro () {
-    const [name, setName] = useState("");
+function Cadastro() {
+    const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
     const [telefone, setTelefone] = useState("");
     const [endereco, setEndereco] = useState("");
@@ -37,28 +35,39 @@ function Cadastro () {
     const salvar = () => {
         let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
         const usuario = {
-            nome: nomeUsuario,
+            nome: nome,
             cpf: cpf,
-            senha: hora,
-            especialidade: especialidade,
-            medico: medico,
+            telefone: telefone,
+            endereco: endereco,
             estado: estado,
-            cidade: cidade
+            cidade: cidade,
+            cep: cep,
+            genero: genero,
+            email: email,
+            dtNasc: dtNasc,
+            senha: senha,
+            confiSenha: confiSenha
         };
         usuarios.push(usuario);
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    };
+
+    const handleCadastrarClick = () => {
+        salvar();
+        alert('Cadastro realizado com sucesso!');
+        navigate('/Login');
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Nome: </label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
             </div>
 
             <div>
                 <label>CPF: </label>
-                <input type="text" value={cpf} minLength={3} maxLength={3} onChange={(e) => setCpf(e.target.value)} required />
+                <input type="text" value={cpf} minLength={11} maxLength={11} onChange={(e) => setCpf(e.target.value)} required />
             </div>
 
             <div>
@@ -73,7 +82,8 @@ function Cadastro () {
 
             <div>
                 <label>Estado: </label>
-                <select value={estado} onChange={(e) => setEstado(e.target.value)}>
+                <select value={estado} onChange={(e) => setEstado(e.target.value)} required>
+                    <option value="">Selecione</option>
                     {estados.map((estado) => (
                         <option key={estado} value={estado}>
                             {estado}
@@ -84,7 +94,8 @@ function Cadastro () {
 
             <div>
                 <label>Cidade: </label>
-                <select value={cidade} onChange={(e) => setCidade(e.target.value)}>
+                <select value={cidade} onChange={(e) => setCidade(e.target.value)} disabled={!estado} required>
+                    <option value="">Selecione</option>
                     {cidadesPorEstado[estado]?.map((cidade) => (
                         <option key={cidade} value={cidade}>
                             {cidade}
@@ -101,6 +112,7 @@ function Cadastro () {
             <div>
                 <label>Gênero: </label>
                 <select value={genero} onChange={(e) => setGenero(e.target.value)} required>
+                    <option value="">Selecione</option>
                     {generos.map((genero) => (
                         <option key={genero} value={genero}>
                             {genero}
@@ -129,14 +141,11 @@ function Cadastro () {
                 <input type="password" value={confiSenha} minLength={3} maxLength={8} onChange={(e) => setConfiSenha(e.target.value)} required />
             </div>
 
-            <button>
-                <Link to="/Cadastro">Cadastrar</Link>
-
+            <button type="button" onClick={handleCadastrarClick}>
+                Cadastrar
             </button>
-
-            {/* <button type="submit" onClick={salvar} >Cadastrar</button>        */}
         </form>
     );
-};
+}
 
 export default Cadastro;
