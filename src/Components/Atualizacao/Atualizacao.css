@@ -1,71 +1,64 @@
-   body {
+body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-color: #CFE5EA;
   }
-  
-   .history {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  
-  .navHist {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .navHist button {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s;
-  }
-  
-  .navHist button:hover {
-    background: #0056b3;
-  }
-  
-  .navHist a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  
-  .historico-consultas {
+
+  div {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
   }
   
-
-  .historico-consultas h2 {
+  h2 {
     margin-bottom: 20px;
     color: #333;
   }
   
- 
-  .listaHistorico {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    margin-right: 5px;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  ul {
     list-style-type: none;
     padding: 0;
   }
   
-  .listaHistorico li {
+  li {
     background: #fafafa;
     margin-bottom: 10px;
     padding: 10px;
@@ -76,7 +69,7 @@
     align-items: center;
   }
   
-  .listaHistorico button {
+  li button {
     background: #ff4d4d;
     color: #fff;
     border: none;
@@ -86,6 +79,14 @@
     transition: background 0.3s;
   }
   
-  .listaHistorico button:hover {
+  li button:hover {
     background: #ff1a1a;
+  }
+  
+  li button:first-of-type {
+    background: #007bff;
+  }
+  
+  li button:first-of-type:hover {
+    background: #0056b3;
   }

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import '../Historico/Historico.css'
+import { Link } from "react-router-dom";
 
 function Historico() {
   const [consultas, setConsultas] = useState([]);
@@ -21,10 +23,14 @@ function Historico() {
 
   return (
 
-    <section>
+    <section className="history">
+      <nav className='navHist'>
+        <button type="button"><Link to="/Perfil">Voltar ao Perfil</Link></button>
+      </nav>
+
       <div className="historico-consultas">
         <h2>Histórico de Consultas</h2>
-        <ul>
+        <ul className="listaHistorico">
           {consultas.map((consulta, index) => (
             <li key={index}>
               {consulta.usuario} - {consulta.data} - {consulta.especialidade}

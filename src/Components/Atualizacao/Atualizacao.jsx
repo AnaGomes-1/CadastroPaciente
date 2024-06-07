@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./Atualizacao.css";
 
 function Atualizacao() {
   const [dados, setDados] = useState({ nome: "", email: "", telefone: "" });
@@ -42,7 +44,7 @@ function Atualizacao() {
 
   return (
     <div>
-      <h2>{editIndex !== null ? "Editar Usuário" : "Atualizar dados"}</h2>
+      <h3>{editIndex !== null ? "Editar Usuário" : "Atualizar dados"}</h3>
       <form onSubmit={handleSubmit}>
         <label>Nome:</label>
         <input
@@ -70,7 +72,7 @@ function Atualizacao() {
         </button>
       </form>
 
-      <h2>Usuários Cadastrados</h2>
+      <h4>Dados Cadastrados</h4>
       <ul>
         {usuarios.map((usuario, index) => (
           <li key={index}>
