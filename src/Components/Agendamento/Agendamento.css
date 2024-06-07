@@ -1,0 +1,75 @@
+.agendamento-consulta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #CFE5EA;
+    padding: 20px;
+  }
+  
+  .agendamento-consulta h2 {
+    margin-bottom: 20px;
+  }
+  
+  .agendamento-consulta form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+  }
+  
+  .agendamento-consulta form > div {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .agendamento-consulta form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .agendamento-consulta form input,
+  .agendamento-consulta form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .agendamento-consulta button {
+    background-color: #007BFF; /* Azul */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  .agendamento-consulta button:hover {
+    background-color: #0056b3; /* Azul mais escuro */
+  }
+  
+  .agendamento-consulta a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .agendamento-consulta a:hover {
+    text-decoration: none;
+  }
+  
+  .navAgend{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+
+  }

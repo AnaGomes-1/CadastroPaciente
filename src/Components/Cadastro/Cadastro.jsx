@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-const Cadastro = ({ Cadastrar }) => {
-    const [name, setName] = useState("");
+function Cadastro() {
+    const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
     const [telefone, setTelefone] = useState("");
     const [endereco, setEndereco] = useState("");
@@ -13,6 +14,7 @@ const Cadastro = ({ Cadastrar }) => {
     const [dtNasc, setDtNasc] = useState("");
     const [senha, setSenha] = useState("");
     const [confiSenha, setConfiSenha] = useState("");
+    const navigate = useNavigate();
 
     const estados = ['SP', 'RJ', 'MG', 'RS', 'SC'];
     const cidadesPorEstado = {
@@ -27,23 +29,45 @@ const Cadastro = ({ Cadastrar }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (senha !== confiSenha) {
-            alert("Senhas diferentes");
-            return;
-        }
-        alert("Cadastro realizado com sucesso!");
+        console.log("Paciente cadastrado: ", nome, cpf, senha, confiSenha);
+    };
+
+    const salvar = () => {
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuario = {
+            nome: nome,
+            cpf: cpf,
+            telefone: telefone,
+            endereco: endereco,
+            estado: estado,
+            cidade: cidade,
+            cep: cep,
+            genero: genero,
+            email: email,
+            dtNasc: dtNasc,
+            senha: senha,
+            confiSenha: confiSenha
+        };
+        usuarios.push(usuario);
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    };
+
+    const handleCadastrarClick = () => {
+        salvar();
+        alert('Cadastro realizado com sucesso!');
+        navigate('/Login');
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Nome: </label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
             </div>
 
             <div>
                 <label>CPF: </label>
-                <input type="text" value={cpf} minLength={3} maxLength={3} onChange={(e) => setCpf(e.target.value)} required />
+                <input type="text" value={cpf} minLength={11} maxLength={11} onChange={(e) => setCpf(e.target.value)} required />
             </div>
 
             <div>
@@ -58,7 +82,8 @@ const Cadastro = ({ Cadastrar }) => {
 
             <div>
                 <label>Estado: </label>
-                <select value={estado} onChange={(e) => setEstado(e.target.value)}>
+                <select value={estado} onChange={(e) => setEstado(e.target.value)} required>
+                    <option value="">Selecione</option>
                     {estados.map((estado) => (
                         <option key={estado} value={estado}>
                             {estado}
@@ -69,7 +94,8 @@ const Cadastro = ({ Cadastrar }) => {
 
             <div>
                 <label>Cidade: </label>
-                <select value={cidade} onChange={(e) => setCidade(e.target.value)}>
+                <select value={cidade} onChange={(e) => setCidade(e.target.value)} disabled={!estado} required>
+                    <option value="">Selecione</option>
                     {cidadesPorEstado[estado]?.map((cidade) => (
                         <option key={cidade} value={cidade}>
                             {cidade}
@@ -86,6 +112,7 @@ const Cadastro = ({ Cadastrar }) => {
             <div>
                 <label>Gênero: </label>
                 <select value={genero} onChange={(e) => setGenero(e.target.value)} required>
+                    <option value="">Selecione</option>
                     {generos.map((genero) => (
                         <option key={genero} value={genero}>
                             {genero}
@@ -114,9 +141,11 @@ const Cadastro = ({ Cadastrar }) => {
                 <input type="password" value={confiSenha} minLength={3} maxLength={8} onChange={(e) => setConfiSenha(e.target.value)} required />
             </div>
 
-            <button type="submit">Cadastrar</button>       
+            <button type="button" onClick={handleCadastrarClick}>
+                Cadastrar
+            </button>
         </form>
     );
-};
+}
 
 export default Cadastro;
